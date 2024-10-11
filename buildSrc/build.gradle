@@ -1,0 +1,13 @@
+plugins {
+    id 'groovy'
+    id 'groovy-gradle-plugin'// In order for our precompiled convention plugins to be discovered by the main Gradle build, see https://docs.gradle.org/current/samples/sample_convention_plugins.html
+}
+
+repositories {
+    gradlePluginPortal()
+}
+
+description = """\
+  This Gradle buildSrc root project defines our "conventions" (reusable configuration/build logic) for our sub-projects.
+  The plugins in src/main/groovy is automatically discovered.
+"""

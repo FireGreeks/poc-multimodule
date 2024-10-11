@@ -1,0 +1,20 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id "java-conventions"
+}
+
+dependencies {
+
+    api (
+            libs.bundles.spring,
+    )
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

@@ -1,0 +1,36 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id "java-conventions"
+}
+
+dependencies {
+    // ----------------------------
+    // region internal dependencies
+    // ----------------------------
+
+    api (
+            project(':poc-business')
+    )
+
+    // endregion
+
+    // ----------------------------
+    // region external dependencies
+    // -----------------------------
+
+    api (
+            libs.bundles.spring,
+            libs.bundles.spring.security
+    )
+
+    // endregion
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

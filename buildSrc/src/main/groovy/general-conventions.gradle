@@ -1,0 +1,13 @@
+// The convention for all Gradle projects
+plugins {
+    id 'idea'
+}
+
+idea { // see https://docs.gradle.org/current/dsl/org.gradle.plugins.ide.idea.model.IdeaModule.html
+    module {
+        // Adding these to the existing default list (which is [project.buildDir, project.file('.gradle')]):
+        ["dist", "dist-jar", "node_modules", "src/shared"].each {
+            excludeDirs += project.file("$it")
+        }
+    }
+}

@@ -1,0 +1,9 @@
+plugins {
+    id 'npm-conventions'
+}
+
+description = """\
+  Triggers the npm build using the a Gradle plugin found in the nems.npm-conventions plugin.
+"""
+
+assemble.dependsOn packageNpmAppAsJar

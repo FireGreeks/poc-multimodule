@@ -1,0 +1,29 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id "java-conventions"
+    id 'org.springframework.boot' version '2.5.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+
+dependencies {
+
+    api (
+            project(':poc-ui-main-vue3'),
+            project(':poc-api-priv-rest')
+    )
+
+    implementation(
+            libs.bundles.spring.boot
+    )
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

@@ -1,0 +1,71 @@
+plugins {
+    id 'base'
+    id 'com.github.node-gradle.node' // gradle-node-plugin
+}
+
+/**
+ *  gradle-node-plugin configuration
+ *  https://github.com/node-gradle/gradle-node-plugin/blob/master/docs/usage.md
+ *  Task name pattern:
+ * ./gradlew npm_<command> Executes an NPM command.
+ */
+node {
+    // Version of node to use.
+    // version = '14.19.0' --> not in use per now, will use globally installed node (download = false)
+
+    // Version of npm to use.
+    // npmVersion = '7.12.0' --> not in use per now, will use globally installed node (download = false)
+
+    // If true, it will download node using above parameters.
+    // If false, it will try to use globally installed node.
+    download = false
+
+
+    // "npm ci" is run during Gradle build. However, it is only run when necessary:
+    // See npmInstall task at: https://github.com/node-gradle/gradle-node-plugin/blob/master/docs/usage.md#executing-npm-tasks
+    // If you see "npmInstall UP-TO-DATE" during build, it means that it was skipped because it was not necessary.
+    // We use "npm ci" instead of "npm install" to avoid the package-lock.json files being updated unintentionally.
+    npmInstallCommand = "install"
+}
+
+
+/**
+ * After triggering the normal npm build, we package the result as a jar file.
+ * This way the packaged javascript application can easily be included as a jar dependency in a Spring Boot application
+ */
+task packageNpmAppAsJar(type: Zip) {
+    dependsOn npm_run_build
+    setArchiveExtension('jar')
+    destinationDirectory = file("${projectDir}/dist-jar")
+    from('dist/spa') {
+        // optional path under which output will be visible in Java classpath, e.g. static resources path
+        into 'META-INF/resources'
+    }
+}
+
+configurations {
+    npmResources
+}
+
+configurations.default.extendsFrom(configurations.npmResources)
+
+/**
+ * Register the jar file as an outgoing artifact
+ */
+
+artifacts {
+    npmResources(packageNpmAppAsJar.archiveFile) {
+        builtBy packageNpmAppAsJar
+        type "jar"
+    }
+}
+
+
+/**
+ * In the future some npm projects can be packaged as a jar file for easy import to a Spring-Boot project.
+ * When this is in place, the clean task must also delete this jar file (if exists)
+ */
+clean {
+    delete 'dist'
+    delete packageNpmAppAsJar.archiveFile
+}

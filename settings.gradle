@@ -1,0 +1,61 @@
+rootProject.name = 'poc-multimodule'
+
+include 'poc-business'
+include 'poc-api-priv-rest'
+include 'poc-ui-main-vue3'
+include 'poc-app-springboot'
+
+dependencyResolutionManagement {
+    versionCatalogs {
+        libs {
+
+            // ------------------
+            // region Spring core
+            // ------------------
+
+            version('spring', '6.1.10')
+            library('spring.core', 'org.springframework', 'spring-core').versionRef('spring')
+            library('spring.context.support', 'org.springframework', 'spring-context-support').versionRef('spring')
+            library('spring.orm', 'org.springframework', 'spring-orm').versionRef('spring')
+            library('spring.oxm', 'org.springframework', 'spring-oxm').versionRef('spring')
+            library('spring.aop', 'org.springframework', 'spring-aop').versionRef('spring')
+            library('spring.webmvc', 'org.springframework', 'spring-webmvc').versionRef('spring')
+            library('spring.web', 'org.springframework', 'spring-web').versionRef('spring')
+
+            bundle('spring', [
+                    'spring.core',
+                    'spring.context.support',
+                    'spring.orm',
+                    'spring.oxm',
+                    'spring.aop',
+                    'spring.webmvc',
+                    'spring.web'
+            ])
+
+            // endregion
+
+            version('spring.boot', '3.3.1')
+            library('spring.boot.starter', 'org.springframework.boot', 'spring-boot-starter-web').versionRef('spring.boot')
+
+            bundle('spring.boot', [
+                    'spring.boot.starter',
+            ])
+
+
+            // -------------------
+            // region Spring other
+            // -------------------
+
+            version('spring.security', '6.3.1')
+            library('spring.security.config', 'org.springframework.security', 'spring-security-config').versionRef('spring-security')
+            library('spring.security.web', 'org.springframework.security', 'spring-security-web').versionRef('spring-security')
+
+            bundle('spring.security', [
+                    'spring.security.config',
+                    'spring.security.web'
+            ])
+
+            // endregion
+        }
+    }
+}

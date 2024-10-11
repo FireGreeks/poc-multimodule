@@ -1,0 +1,12 @@
+{
+  "name": "poc-elasticbeanstalk",
+  "workspaces": [
+    "poc-ui-main-vue3"
+  ],
+  "scripts": {
+
+  },
+  "dependencies": {
+    "vue": "^3.4.31"
+  }
+}
