@@ -1,14 +1,16 @@
-import apiFetch from 'src/plugins/api-helper/api-fetch';
-import {ApiOptions} from 'src/plugins/api-helper/api-options';
-import apiHandleResponse from 'src/plugins/api-helper/api-response';
+import {ApiOptions} from 'src/plugins/api-helper/api-fetch/api-options';
+import ApiRequestImpl from 'src/plugins/api-helper/api-fetch/api-request';
+import filterChains from 'src/plugins/api-helper/api-filter-chain/filter-presets';
+import {FilterChain} from 'src/plugins/api-helper/api-filter-chain/filter-chain';
 
 export default {
-  get: async (url: string, options?: ApiOptions): Promise<string> => {
-    const response = await apiFetch(url, 'GET', options)
-    return await apiHandleResponse(response, options)
+  get: <T = Response>(url: string, responseFilterChain: FilterChain<Response, any, T>, options?: ApiOptions<T>): Promise<T> => {
+    const request: ApiRequestImpl<T> = new ApiRequestImpl<T>(url, 'GET', responseFilterChain, options)
+    return request.fetch()
   },
-  post: async (url: string, body: any, options?: ApiOptions): Promise<string> => {
-    const response = await apiFetch(url, 'POST', options, body)
-    return await apiHandleResponse(response, options)
-  }
+  post: <T>(url: string, body: any, responseFilterChain: FilterChain<Response, any, T>, options?: ApiOptions<T>): Promise<T> => {
+    const request: ApiRequestImpl<T> = new ApiRequestImpl<T>(url, 'POST', responseFilterChain, options, body)
+    return request.fetch()
+  },
+  filters: filterChains
 }

@@ -12,22 +12,26 @@
 
 <script setup lang='ts'>
 import {ref} from 'vue';
-import apiHelper from 'src/plugins/api-helper';
+import api from 'src/plugins/api-helper';
 
 const inputValue = ref('')
 
 const getHelloWorld = async () => {
-  const response = await apiHelper.get('hello-world', {
-    responseType: 'PLAIN'
+  const res = await api.get('hello-world', api.filters.TEXT, {
+    updateInterval: 1000,
+    callbacks: {
+      onstart: () => alert('Started!'),
+      onerror: (r, e) => alert('Error: ' + e),
+      onfilterstep: (r, i, filterCount) => alert('Filtering: ' + i + '/' + filterCount),
+      onstatechange: (r, state) => alert('State changed to ' + state),
+      onupdate: (r, elapsedTime) => alert('Elapsed time: ' + elapsedTime)
+    }
   })
-  alert(response)
+  alert(res)
 }
 
 const postCapitalize = async () => {
-  const response = await apiHelper.post('capitalize', inputValue.value, {
-    bodyContentType: 'PLAIN',
-    responseType: 'PLAIN'
-  })
+  const response = await api.post('capitalize', inputValue.value, api.filters.JSON)
   alert(response)
 }
 </script>
