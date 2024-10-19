@@ -12,21 +12,12 @@
 
 <script setup lang='ts'>
 import {ref} from 'vue';
-import api from 'src/plugins/simple-api-fetch';
+import api from 'simple-api-fetch'
 
 const inputValue = ref('')
 
 const getHelloWorld = async () => {
-  const res = await api.get('hello-world', api.filters.TEXT, {
-    updateInterval: 1000,
-    callbacks: {
-      onstart: () => alert('Started!'),
-      onerror: (r, e) => alert('Error: ' + e),
-      onfilterstep: (r, i, filterCount) => alert('Filtering: ' + i + '/' + filterCount),
-      onstatechange: (r, state) => alert('State changed to ' + state),
-      onupdate: (r, elapsedTime) => alert('Elapsed time: ' + elapsedTime)
-    }
-  })
+  const res = await api.get('hello-world', api.filters.TEXT)
   alert(res)
 }
 
