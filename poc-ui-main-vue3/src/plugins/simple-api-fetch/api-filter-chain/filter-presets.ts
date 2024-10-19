@@ -1,4 +1,4 @@
-import {FilterChain} from 'src/plugins/api-helper/api-filter-chain/filter-chain';
+import {FilterChain} from 'src/plugins/simple-api-fetch/api-filter-chain/filter-chain';
 
 export default {
   NONE: FilterChain.Create<Response>(),

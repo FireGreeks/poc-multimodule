@@ -1,5 +1,5 @@
-import {FilterChain} from 'src/plugins/api-helper/api-filter-chain/filter-chain';
-import {ApiOptions} from 'src/plugins/api-helper/api-fetch/api-options';
+import {FilterChain} from 'src/plugins/simple-api-fetch/api-filter-chain/filter-chain';
+import {ApiOptions} from 'src/plugins/simple-api-fetch/api-fetch/api-options';
 
 export type FetchMethod = 'GET' | 'POST'
 export type RequestState = 'PENDING' | 'FILTERING' | 'SUCCESS' | 'ERROR'

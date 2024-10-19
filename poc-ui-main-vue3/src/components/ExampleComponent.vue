@@ -12,7 +12,7 @@
 
 <script setup lang='ts'>
 import {ref} from 'vue';
-import api from 'src/plugins/api-helper';
+import api from 'src/plugins/simple-api-fetch';
 
 const inputValue = ref('')
 

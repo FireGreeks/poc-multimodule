@@ -1,4 +1,4 @@
-import {ApiRequest} from 'src/plugins/api-helper/api-fetch/api-request-types';
+import {ApiRequest} from 'src/plugins/simple-api-fetch/api-fetch/api-request-types';
 
 export default async function apiFetch(request: ApiRequest<any>): Promise<Response> {
   const processedBody = request.options?.bodyPreprocessing ?

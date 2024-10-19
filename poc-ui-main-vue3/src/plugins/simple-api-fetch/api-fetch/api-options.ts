@@ -1,5 +1,5 @@
-import {FilterChain} from 'src/plugins/api-helper/api-filter-chain/filter-chain';
-import {ApiRequest, RequestState} from 'src/plugins/api-helper/api-fetch/api-request-types';
+import {FilterChain} from 'src/plugins/simple-api-fetch/api-filter-chain/filter-chain';
+import {ApiRequest, RequestState} from 'src/plugins/simple-api-fetch/api-fetch/api-request-types';
 
 export type ApiOptions<T> = {
   fetchOptions?: RequestInit,

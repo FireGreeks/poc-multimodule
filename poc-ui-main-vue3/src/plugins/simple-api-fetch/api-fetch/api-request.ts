@@ -1,7 +1,7 @@
-import {ApiOptions} from 'src/plugins/api-helper/api-fetch/api-options';
-import {FilterChain} from 'src/plugins/api-helper/api-filter-chain/filter-chain';
-import apiFetch from 'src/plugins/api-helper/api-fetch/api-fetch';
-import {ApiRequest, FetchMethod, RequestState} from 'src/plugins/api-helper/api-fetch/api-request-types';
+import {ApiOptions} from 'src/plugins/simple-api-fetch/api-fetch/api-options';
+import {FilterChain} from 'src/plugins/simple-api-fetch/api-filter-chain/filter-chain';
+import apiFetch from 'src/plugins/simple-api-fetch/api-fetch/api-fetch';
+import {ApiRequest, FetchMethod, RequestState} from 'src/plugins/simple-api-fetch/api-fetch/api-request-types';
 
 export default class ApiRequestImpl<T> implements ApiRequest<T> {
   public url: string;
