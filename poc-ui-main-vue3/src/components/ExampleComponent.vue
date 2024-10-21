@@ -22,7 +22,9 @@ const getHelloWorld = async () => {
 }
 
 const postCapitalize = async () => {
-  const response = await api.post('capitalize', inputValue.value, api.filters.JSON)
+  const response = await api.post('capitalize', inputValue.value, api.filters.JSON
+    .constraint((j: string) => j !== '')
+    .fallback('Error: the input is empty'))
   alert(response)
 }
 </script>
