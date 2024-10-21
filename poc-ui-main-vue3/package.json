@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A multimodule POC for spring boot and quasar",
   "productName": "Multimodule POC",
-  "author": "FireGreeks <theodorbischler1@gmail.com>",
+  "author": "theobix <theodorbischler1@gmail.com>",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.ts,.vue ./",
@@ -17,7 +17,7 @@
     "quasar": "^2.8.0",
     "vue": "^3.4.18",
     "vue-router": "^4.0.12",
-    "simple-api-fetch": "github:FireGreeks/simple-api-fetch"
+    "simple-api-fetch": "github:theobix/simple-api-fetch"
   },
   "devDependencies": {
     "@quasar/app-vite": "^1.8.0",
